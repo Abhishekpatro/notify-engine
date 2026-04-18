@@ -213,3 +213,9 @@ docker-compose.override.yml
 *.log
 grafana-data/
 prometheus-data/
+services/ingestion-api/venv/
+services/ingestion-api/__pycache__/
+**/__pycache__/
+**/venv/
+.env.*
+!.env.example
