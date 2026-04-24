@@ -1,5 +1,37 @@
 services:
-
+  ingestion-api:
+    build:
+      context: ./services/ingestion-api
+      dockerfile: Dockerfile
+    container_name: notify-ingestion-api
+    ports:
+      - "8000:8000"
+    environment:
+      DB_HOST: notify-postgres
+      DB_PORT: 5432
+      DB_NAME: notify_db
+      DB_USER: notify_user
+      DB_PASSWORD: notify_pass
+      KAFKA_BOOTSTRAP_SERVERS: notify-kafka:9092
+      KAFKA_TOPIC_EVENTS_RAW: events.raw
+      APP_HOST: 0.0.0.0
+      APP_PORT: 8000
+      APP_ENV: production
+    depends_on:
+      kafka:
+        condition: service_healthy
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    networks:
+      - notify-network
+    healthcheck:
+      test: ["CMD-SHELL", "curl -f http://localhost:8000/health || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 15s
   kafka:
     image: apache/kafka:3.7.0
     container_name: notify-kafka
