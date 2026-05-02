@@ -2,6 +2,7 @@ FROM python:3.12-slim
 
 WORKDIR /app
 
+# Install curl for healthcheck
 RUN apt-get update && apt-get install -y --no-install-recommends curl && rm -rf /var/lib/apt/lists/*
 
 COPY requirements.txt .
@@ -10,9 +11,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 COPY . .
 
-# Remove any cached bytecode and virtual environments
-RUN rm -rf __pycache__ venv .env *.pyc
+# Router doesn't expose HTTP port — it's a consumer process
+# But we'll add a simple health check script in the future
 
-EXPOSE 8000
-
-CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
+CMD ["python", "main.py"]

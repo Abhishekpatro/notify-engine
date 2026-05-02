@@ -1,9 +1,7 @@
 from dotenv import load_dotenv
 import os
 
-# Only load .env in development (local machine), not in Docker
-if os.getenv("APP_ENV") != "production":
-    load_dotenv()
+load_dotenv()
 
 # PostgreSQL
 DB_HOST = os.getenv("DB_HOST", "localhost")
@@ -19,9 +17,14 @@ DATABASE_URL = (
 # Kafka
 KAFKA_BOOTSTRAP_SERVERS = os.getenv("KAFKA_BOOTSTRAP_SERVERS", "localhost:9092")
 KAFKA_TOPIC_EVENTS_RAW = os.getenv("KAFKA_TOPIC_EVENTS_RAW", "events.raw")
+KAFKA_TOPIC_NOTIFICATIONS_OUT = os.getenv("KAFKA_TOPIC_NOTIFICATIONS_OUT", "notifications.outbound")
+KAFKA_CONSUMER_GROUP = os.getenv("KAFKA_CONSUMER_GROUP", "router-group")
+
+# Redis
+REDIS_HOST = os.getenv("REDIS_HOST", "localhost")
+REDIS_PORT = int(os.getenv("REDIS_PORT", "6379"))
+REDIS_DB = int(os.getenv("REDIS_DB", "0"))
 
 # App
-APP_HOST = os.getenv("APP_HOST", "0.0.0.0")
-APP_PORT = int(os.getenv("APP_PORT", "8000"))
 APP_ENV = os.getenv("APP_ENV", "development")
 LOG_LEVEL = os.getenv("LOG_LEVEL", "INFO")
