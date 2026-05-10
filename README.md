@@ -75,11 +75,44 @@ Concurrent users: TBD
 
 ## Project status
 
-| Week   | Focus                                                        | Status         |
-| ------ | ------------------------------------------------------------ | -------------- |
-| Week 1 | Scaffold + docker-compose + ingestion API + Kafka            | 🔨 In progress |
-| Week 2 | Rules engine + Redis dedup + rate limiting + delivery worker | ⏳ Pending     |
-| Week 3 | Observability + GitHub Actions CI/CD + Terraform             | ⏳ Pending     |
-| Week 4 | Kubernetes + load testing + polish                           | ⏳ Pending     |
+**Current Phase:** Week 1 Complete ✅ | Week 2 In Progress 🚧
+
+### Completed
+
+- ✅ **Infrastructure** — Kafka, PostgreSQL, Redis, Prometheus, Grafana running in Docker
+- ✅ **Ingestion API** — FastAPI service with Pydantic validation, PostgreSQL persistence, Kafka producer
+- ✅ **Router Service** — Kafka consumer with Redis deduplication, rate limiting, and PostgreSQL routing rules
+- ✅ **End-to-End Flow** — Events flow from ingestion → Kafka → router → routing decisions logged to DB
+
+### In Progress
+
+- 🚧 **Docker Networking Fix** — Resolving ingestion-api containerization issue (router works, ingestion-api tested locally)
+- 🚧 **Delivery Worker** — Next up: consume from notifications.outbound, deliver via webhook/email
+
+### Upcoming
+
+- ⏳ **Monitoring Dashboards** — Grafana panels for throughput, latency, consumer lag
+- ⏳ **CI/CD Pipeline** — GitHub Actions: test → lint → build → deploy
+- ⏳ **Kubernetes Deployment** — Helm charts, HPA autoscaling, pod resource limits
+- ⏳ **Terraform IaC** — Provision AWS ECS, RDS, ElastiCache, VPC
+
+| Week   | Milestone                                       | Status         |
+| ------ | ----------------------------------------------- | -------------- |
+| Week 1 | Scaffold, Infrastructure, Ingestion API, Router | ✅ Complete    |
+| Week 2 | Delivery Worker, Redis Dedup, Full Event Flow   | 🚧 In Progress |
+| Week 3 | Observability, CI/CD, Terraform                 | ⏳ Planned     |
+| Week 4 | Kubernetes, Load Testing, Production Polish     | ⏳ Planned     |
+
+**Last Updated:** May 2, 2026 — Day 5
+
+---
+
+## Recent Commits
+
+- `feat: add router service - Kafka consumer with Redis dedup, rate limiting, and routing rules`
+- `feat: dockerize ingestion-api and add to docker-compose with healthcheck`
+- `feat: add ingestion-api service with FastAPI, Kafka producer, PostgreSQL, and Prometheus metrics`
+- `feat: add docker-compose with Kafka, PostgreSQL, Redis, Prometheus, Grafana`
+- `feat: initial project scaffold, folder structure, and README`
 
 ---
