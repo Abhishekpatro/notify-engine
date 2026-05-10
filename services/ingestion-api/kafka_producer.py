@@ -6,11 +6,11 @@ from config import KAFKA_BOOTSTRAP_SERVERS, KAFKA_TOPIC_EVENTS_RAW
 
 logger = logging.getLogger(__name__)
 
-# Module-level singleton. One producer instance is reused across all requests.
-# KafkaProducer is thread-safe and expensive to initialize — never create
-# per-request instances.
-_producer = None
+# Debug
+print(f"[KAFKA_PRODUCER] Imported KAFKA_BOOTSTRAP_SERVERS={KAFKA_BOOTSTRAP_SERVERS}")
+logger.info(f"KAFKA_BOOTSTRAP_SERVERS={KAFKA_BOOTSTRAP_SERVERS}")
 
+_producer = None
 
 def get_producer() -> KafkaProducer:
     global _producer

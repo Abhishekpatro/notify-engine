@@ -38,7 +38,7 @@ All services are independently deployable and communicate only through Kafka.
 ## Key Design Decisions
 
 **Why Kafka instead of direct HTTP between services?**  
-Kafka is a durable log. If the router crashes mid-processing, events are not lost —
+Kafka is a durable log. If the router crashes mid-processing, events are not lost -
 the consumer resumes from its last committed offset on restart.
 Direct HTTP calls have no such guarantee.
 
