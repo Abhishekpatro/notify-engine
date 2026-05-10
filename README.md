@@ -54,21 +54,21 @@ Separating them means a slow webhook never backs up the routing pipeline.
 
 ## API
 
-POST /events — ingest a new event (returns 202 Accepted)
-GET /events/{event_id}/status — get delivery status for an event
-GET /notifications?user_id=X — list notifications for a user
-GET /health — service health check
+POST /events - ingest a new event (returns 202 Accepted)
+GET /events/{event_id}/status - get delivery status for an event
+GET /notifications?user_id=X - list notifications for a user
+GET /health - service health check
 
 ## Running locally
 
 ```bash
-# Coming Day 2 — full docker-compose setup
+# Coming Day 2 - full docker-compose setup
 docker compose up
 ```
 
 ## Load test results
 
-Coming Week 4 — Locust benchmark results
+Coming Week 4 - Locust benchmark results
 Peak throughput: TBD events/sec
 p99 latency: TBD ms
 Concurrent users: TBD
@@ -79,15 +79,15 @@ Concurrent users: TBD
 
 ### Completed
 
-- ✅ **Infrastructure** — Kafka, PostgreSQL, Redis, Prometheus, Grafana running in Docker
-- ✅ **Ingestion API** — FastAPI service with Pydantic validation, PostgreSQL persistence, Kafka producer
-- ✅ **Router Service** — Kafka consumer with Redis deduplication, rate limiting, and PostgreSQL routing rules
-- ✅ **End-to-End Flow** — Events flow from ingestion → Kafka → router → routing decisions logged to DB
+- ✅ **Infrastructure** - Kafka, PostgreSQL, Redis, Prometheus, Grafana running in Docker
+- ✅ **Ingestion API** - FastAPI service with Pydantic validation, PostgreSQL persistence, Kafka producer
+- ✅ **Router Service** - Kafka consumer with Redis deduplication, rate limiting, and PostgreSQL routing rules
+- ✅ **End-to-End Flow** - Events flow from ingestion → Kafka → router → routing decisions logged to DB
 
 ### In Progress
 
-- 🚧 **Docker Networking Fix** — Resolving ingestion-api containerization issue (router works, ingestion-api tested locally)
-- 🚧 **Delivery Worker** — Next up: consume from notifications.outbound, deliver via webhook/email
+- 🚧 **Docker Networking Fix** - Resolving ingestion-api containerization issue (router works, ingestion-api tested locally)
+- 🚧 **Delivery Worker** - Next up: consume from notifications.outbound, deliver via webhook/email
 
 ### Upcoming
 
@@ -103,7 +103,7 @@ Concurrent users: TBD
 | Week 3 | Observability, CI/CD, Terraform                 | ⏳ Planned     |
 | Week 4 | Kubernetes, Load Testing, Production Polish     | ⏳ Planned     |
 
-**Last Updated:** May 2, 2026 — Day 5
+**Last Updated:** May 2, 2026 - Day 5
 
 ---
 
